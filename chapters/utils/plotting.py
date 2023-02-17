@@ -1201,6 +1201,7 @@ def plot_classification_2d(X, y, model=None, transform="Sigmoid"):
         xx1, xx2 = torch.meshgrid(
             torch.linspace(-1.5, 1.5, 25),
             torch.linspace(-1.5, 1.5, 25),
+            indexing='ij'
         )
         if transform == "Sigmoid":
             Z = model(
