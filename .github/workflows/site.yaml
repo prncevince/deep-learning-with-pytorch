@@ -7,6 +7,8 @@ on:
     branches: [main]
     paths: ['_docs/**']
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   nbdev-quarto-site:
     runs-on: ${{ matrix.os  }}
