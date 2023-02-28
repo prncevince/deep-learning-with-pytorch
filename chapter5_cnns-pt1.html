@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.231">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Chapter 5: Introduction to Convolutional Neural Networks</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter6_cnns-pt2.html" rel="next">
+<link href="./chapter4_neural-networks-pt2.html" rel="prev">
+<link href="./docs/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="5&nbsp; Chapter 5: Introduction to Convolutional Neural Networks">
+<meta property="og:description" content="">
+<meta name="twitter:title" content="5&nbsp; Chapter 5: Introduction to Convolutional Neural Networks">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter1_gradient-descent.html">Chapters</a></li><li class="breadcrumb-item"><a href="./chapter5_cnns-pt1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Introduction to Convolutional Neural Networks</span></a></li></ol></nav>
+      <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://github.com/prncevince/deep-learning-with-pytorch" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Deep Learning with PyTorch</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Chapters</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter1_gradient-descent.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Optimization &amp; Gradient Descent</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2_stochastic-gradient-descent.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Stochastic Gradient Descent</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3_pytorch-neural-networks-pt1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Introduction to Pytorch &amp; Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4_neural-networks-pt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: Training Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5_cnns-pt1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Introduction to Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6_cnns-pt2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chapter 6: Advanced Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7_advanced-deep-learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Advanced Deep Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixa_gradients.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Appendix A: Gradients Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixb_logistic-loss.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix B: Logistic Loss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixc_computing-derivatives.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Appendix C: Computing Derivatives</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendixd_bitmoji-cnn.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Appendix D: Creating a CNN to Predict Bitmojis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-outline" id="toc-chapter-outline" class="nav-link active" data-scroll-target="#chapter-outline"><span class="header-section-number">5.1</span> Chapter Outline</a></li>
+  <li><a href="#chapter-learning-objectives" id="toc-chapter-learning-objectives" class="nav-link" data-scroll-target="#chapter-learning-objectives"><span class="header-section-number">5.2</span> Chapter Learning Objectives</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">5.3</span> Imports</a></li>
+  <li><a href="#convolutional-neural-networks-cnns" id="toc-convolutional-neural-networks-cnns" class="nav-link" data-scroll-target="#convolutional-neural-networks-cnns"><span class="header-section-number">5.4</span> 1. Convolutional Neural Networks (CNNs)</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">5.4.1</span> 1.1. Motivation</a></li>
+  <li><a href="#convolutions-and-filters" id="toc-convolutions-and-filters" class="nav-link" data-scroll-target="#convolutions-and-filters"><span class="header-section-number">5.4.2</span> 1.2. Convolutions and Filters</a></li>
+  </ul></li>
+  <li><a href="#cooking-up-a-cnn" id="toc-cooking-up-a-cnn" class="nav-link" data-scroll-target="#cooking-up-a-cnn"><span class="header-section-number">5.5</span> 2. Cooking up a CNN</a>
+  <ul class="collapse">
+  <li><a href="#ingredient-1-convolutional-layers" id="toc-ingredient-1-convolutional-layers" class="nav-link" data-scroll-target="#ingredient-1-convolutional-layers"><span class="header-section-number">5.5.1</span> 2.1. Ingredient 1: Convolutional Layers</a></li>
+  <li><a href="#ingredient-2-flattening" id="toc-ingredient-2-flattening" class="nav-link" data-scroll-target="#ingredient-2-flattening"><span class="header-section-number">5.5.2</span> 2.2. Ingredient 2: Flattening</a></li>
+  <li><a href="#ingredient-3-pooling" id="toc-ingredient-3-pooling" class="nav-link" data-scroll-target="#ingredient-3-pooling"><span class="header-section-number">5.5.3</span> 2.3. Ingredient 3: Pooling</a></li>
+  </ul></li>
+  <li><a href="#the-cnn-recipe-book" id="toc-the-cnn-recipe-book" class="nav-link" data-scroll-target="#the-cnn-recipe-book"><span class="header-section-number">5.6</span> 3. The CNN Recipe Book</a></li>
+  <li><a href="#cnn-vs-fully-connected-nn" id="toc-cnn-vs-fully-connected-nn" class="nav-link" data-scroll-target="#cnn-vs-fully-connected-nn"><span class="header-section-number">5.7</span> 4. CNN vs Fully Connected NN</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/prncevince/deep-learning-with-pytorch/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Introduction to Convolutional Neural Networks</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<p><img src="../docs/banner.png" class="img-fluid"></p>
+<p><img src="img/block.png" class="img-fluid"></p>
+<section id="chapter-outline" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="chapter-outline"><span class="header-section-number">5.1</span> Chapter Outline</h2>
+<hr>
+<div class="toc">
+<ul class="toc-item">
+<li>
+<span><a href="#Chapter-Learning-Objectives" data-toc-modified-id="Chapter-Learning-Objectives-2">Chapter Learning Objectives</a></span>
+</li>
+<li>
+<span><a href="#Imports" data-toc-modified-id="Imports-3">Imports</a></span>
+</li>
+<li>
+<span><a href="#1.-Convolutional-Neural-Networks-(CNNs)" data-toc-modified-id="1.-Convolutional-Neural-Networks-(CNNs)-4">1. Convolutional Neural Networks (CNNs)</a></span>
+</li>
+<li>
+<span><a href="#2.-Cooking-up-a-CNN" data-toc-modified-id="2.-Cooking-up-a-CNN-5">2. Cooking up a CNN</a></span>
+</li>
+<li>
+<span><a href="#3.-The-CNN-Recipe-Book" data-toc-modified-id="3.-The-CNN-Recipe-Book-6">3. The CNN Recipe Book</a></span>
+</li>
+<li>
+<span><a href="#4.-CNN-vs-Fully-Connected-NN" data-toc-modified-id="4.-CNN-vs-Fully-Connected-NN-7">4. CNN vs Fully Connected NN</a></span>
+</li>
+</ul>
+</div>
+</section>
+<section id="chapter-learning-objectives" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="chapter-learning-objectives"><span class="header-section-number">5.2</span> Chapter Learning Objectives</h2>
+<hr>
+<ul>
+<li>Describe the terms convolution, kernel/filter, pooling, and flattening</li>
+<li>Explain how convolutional neural networks (CNNs) work</li>
+<li>Calculate the number of parameters in a given CNN architecture</li>
+<li>Create a CNN in <code>PyTorch</code></li>
+<li>Discuss the key differences between CNNs and fully connected NNs</li>
+</ul>
+</section>
+<section id="imports" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">5.3</span> Imports</h2>
+<hr>
+<div class="cell" data-tags="[]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchinfo <span class="im">import</span> summary</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.plotting <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'ggplot'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">16</span>, <span class="st">'axes.labelweight'</span>: <span class="st">'bold'</span>, <span class="st">'axes.grid'</span>: <span class="va">False</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="convolutional-neural-networks-cnns" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="convolutional-neural-networks-cnns"><span class="header-section-number">5.4</span> 1. Convolutional Neural Networks (CNNs)</h2>
+<hr>
+<section id="motivation" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">5.4.1</span> 1.1. Motivation</h3>
+<p>Up until now we’ve been dealing with “fully connected neural networks” meaning that every neuron in a given layer is connected to every neuron in the next layer. This has two key implications: 1. It results in a LOT of parameters. 2. The order of our features doesn’t matter.</p>
+<p>Consider the simple image and fully connected network below:</p>
+<p><img src="img/cnn-1.png" class="img-fluid"></p>
+<p>Every input node is connected to every node in the next layer - is that really necessary? When you look at this image, how do you know that it’s me? - You notice the structure in the image (there’s a face, shoulders, a smile, etc.) - You notice how different structures are positioned and related (the face is on top of the shoulders, etc.) - You probably use the shading (colour) to infer things about the image too but we’ll talk more about that later.</p>
+<p>The point here is that <strong>the structure of our data (the pixels) is important</strong>. So maybe, we should have each hidden node only look at a small area of the image, like this:</p>
+<p><img src="img/cnn-2.png" class="img-fluid"></p>
+<p>We have far fewer parameters now because we’re acknowledging that pixels that are far apart are probably not all that related and so don’t need to be connected. We’re seeing that structure is important here, so then why should I need to flatten my image at all? Let’s be crazy and not flatten the image, but instead, make our hidden layer a 2D matrix:</p>
+<p><img src="img/cnn-3.png" class="img-fluid"></p>
+<p>We’re almost there!</p>
+<p>As it stands, each group of 2 x 2 pixels has 4 unique weights associated with it (one for each pixel), which are being summed up into a single value in the hidden layer. But we don’t need the weights to be different for each group, we’re looking for <strong>structure</strong>, we don’t care if my face is in the top left or the bottom right, we’re just looking for a face!</p>
+<p>Let’s summarise the weights into a weight “filter”:</p>
+<p><img src="img/cnn-4.png" class="img-fluid"></p>
+<p><img src="chapter5_cnns-pt1_files/figure-html/cbd47206-1-7cedca66-b16e-46de-8c83-15bd211eaa9d.png" class="img-fluid" alt="image.png"> - Let’s see how the filter works - We’ll display some arbitrary values for our pixels - The filter “convolves” over each group of pixels, multiplies corresponding elements and sums them up to give the values in the output nodes:</p>
+<p><img src="img/cnn-5.gif" class="img-fluid"></p>
+<p>As we’ll see, we can add as many of these “filters” as we like to make more complex models that can identify more useful things:</p>
+<p><img src="img/cnn-6.png" class="img-fluid"></p>
+<p>We just made a <strong>convolutional neural network</strong> (CNN). Instead of fully-connected hidden nodes, we have 2D filters that we “convolve” over our input data. This has two key advantages: 1. We have less parameters than a fully connected network. 2. We preserve the useful structure of our data.</p>
+</section>
+<section id="convolutions-and-filters" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="convolutions-and-filters"><span class="header-section-number">5.4.2</span> 1.2. Convolutions and Filters</h3>
+<p>Convolution really just means “to pass over the data”. What are we “passing”? Our filters - which are also called <strong>kernels</strong>. Here’s another gif like the one we saw earlier:</p>
+<p><img src="img/conv-1.gif" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Source: modified after <a href="https://theano-pymc.readthedocs.io/en/latest/tutorial/conv_arithmetic.html">theano-pymc.readthedocs.io</a>.</p>
+</blockquote>
+<p>So how does this help us extract structure from the data? Well let’s see some examples!</p>
+<div class="cell" data-tags="[]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> torch.from_numpy(plt.imread(<span class="st">"img/tom_bw.png"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We can blur this image by applying a filter with the following weights:</p>
+<p><span class="math display">\[\begin{bmatrix} 0.0625 &amp; 0.125 &amp; 0.0625 \\ 0.125 &amp; 0.25 &amp; 0.125 \\ 0.0625 &amp; 0.125 &amp; 0.0625 \end{bmatrix}\]</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_conv(image, kernel):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot convs with matplotlib."""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> kernel.shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    conv <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">1</span>, kernel_size<span class="op">=</span>(d, d), padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    conv.weight.data[:] <span class="op">=</span> kernel</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    fig, (ax1, ax2) <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>), ncols<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ax1.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    ax1.axis(<span class="st">'off'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">"Original"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ax2.imshow(conv(image[<span class="va">None</span>, <span class="va">None</span>, :]).detach().squeeze(), cmap<span class="op">=</span><span class="st">'gray'</span>)  </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="st">"Filtered"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    ax2.axis(<span class="st">'off'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-tags="[]" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> torch.tensor([[[[ <span class="fl">0.0625</span>,  <span class="fl">0.1250</span>,  <span class="fl">0.0625</span>],</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                         [ <span class="fl">0.1250</span>,  <span class="fl">0.2500</span>,  <span class="fl">0.1250</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                         [ <span class="fl">0.0625</span>,  <span class="fl">0.1250</span>,  <span class="fl">0.0625</span>]]]])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plot_conv(image, kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>How about this one:</p>
+<p><span class="math display">\[\begin{bmatrix} -2 &amp; -1 &amp; 0 \\ -1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 2 \end{bmatrix}\]</span></p>
+<div class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> torch.tensor([[[[ <span class="op">-</span><span class="dv">2</span>,  <span class="op">-</span><span class="dv">1</span>,  <span class="dv">0</span>],</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                         [ <span class="op">-</span><span class="dv">1</span>,   <span class="dv">1</span>,  <span class="dv">1</span>],</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                         [  <span class="dv">0</span>,   <span class="dv">1</span>,  <span class="dv">2</span>]]]])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plot_conv(image, kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>One more:</p>
+<p><span class="math display">\[\begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &amp; -1 \end{bmatrix}\]</span></p>
+<div class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> torch.tensor([[[[  <span class="op">-</span><span class="dv">1</span>,  <span class="op">-</span><span class="dv">1</span>,   <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                         [  <span class="op">-</span><span class="dv">1</span>,   <span class="dv">8</span>,   <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         [  <span class="op">-</span><span class="dv">1</span>,  <span class="op">-</span><span class="dv">1</span>,   <span class="op">-</span><span class="dv">1</span>]]]])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plot_conv(image, kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><a href="https://setosa.io/ev/image-kernels/">Here’s a great website</a> where you can play around with other filters. We usually use <strong>odd numbers for filters</strong> so that they are applied symmetrically around our input data. Did you notice in the gif earlier that the output from applying our kernel was smaller than the input? Take a look again:</p>
+<p><img src="img/conv-1.gif" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Source: modified after <a href="https://theano-pymc.readthedocs.io/en/latest/tutorial/conv_arithmetic.html">theano-pymc.readthedocs.io</a>.</p>
+</blockquote>
+<p>By default, our kernels are only applied where the filter fully fits on top of the input. But we can control this behaviour and the size of our output with: - <code>padding</code>: “pads” the outside of the input 0’s to allow the kernel to reach the boundary pixels - <code>strides</code>: controls how far the kernel “steps” over pixels.</p>
+<p>Below is an example with: - <code>padding=1</code>: we have <code>1</code> layer of 0’s around our border - <code>strides=(2,2)</code>: our kernel moves 2 data points to the right for each row, then moves 2 data points down to the next row</p>
+<p><img src="img/conv-2.gif" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Source: modified after <a href="https://theano-pymc.readthedocs.io/en/latest/tutorial/conv_arithmetic.html">theano-pymc.readthedocs.io</a>.</p>
+</blockquote>
+<p>We’ll look more at these below.</p>
+</section>
+</section>
+<section id="cooking-up-a-cnn" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="cooking-up-a-cnn"><span class="header-section-number">5.5</span> 2. Cooking up a CNN</h2>
+<hr>
+<section id="ingredient-1-convolutional-layers" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="ingredient-1-convolutional-layers"><span class="header-section-number">5.5.1</span> 2.1. Ingredient 1: Convolutional Layers</h3>
+<p>I showed some example kernels above. In CNNs the actual values in <strong>the kernels are the weights your network will learn during training</strong>: your network will learn what structures are important for prediction.</p>
+<p>In PyTorch, convolutional layers are defined as <code>torch.nn.Conv2d</code>, there are 5 important arguments we need to know: 1. <code>in_channels</code>: how many features are we passing in. Our features are our colour bands, in greyscale, we have 1 feature, in colour, we have 3 channels. 2. <code>out_channels</code>: how many kernels do we want to use. Analogous to the number of hidden nodes in a hidden layer of a fully connected network. 3. <code>kernel_size</code>: the size of the kernel. Above we were using 3x3. Common sizes are 3x3, 5x5, 7x7. 4. <code>stride</code>: the “step-size” of the kernel. 5. <code>padding</code>: the number of pixels we should pad to the outside of the image so we can get edge pixels.</p>
+<div class="cell" data-tags="[]" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 kernel of (5,5)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">1</span>, kernel_size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plot_convs(image, conv_layer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 kernels of (3,3)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">2</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plot_convs(image, conv_layer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 kernels of (5,5)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">3</span>, kernel_size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plot_convs(image, conv_layer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>If we use a kernel with no padding, our output image will be smaller as we noted earlier. Let’s demonstrate that by using a larger kernel now:</p>
+<div class="cell" data-tags="[]" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 kernel of (51,51)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">1</span>, kernel_size<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">50</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plot_convs(image, conv_layer, axis<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>As we saw, we can add <code>padding</code> to the outside of the image to avoid this:</p>
+<div class="cell" data-tags="[]" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 kernel of (51,51) with padding</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">1</span>, kernel_size<span class="op">=</span>(<span class="dv">51</span>, <span class="dv">51</span>), padding<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plot_convs(image, conv_layer, axis<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Setting <code>padding = kernel_size // 2</code> will always result in an output the same shape as the input. Think about why this is…</p>
+</blockquote>
+<p>Finally, we also saw before how <code>strides</code> influence the size of the output:</p>
+<div class="cell" data-tags="[]" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 kernel of (25,25) with stride of 3</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>conv_layer <span class="op">=</span> torch.nn.Conv2d(<span class="dv">1</span>, <span class="dv">1</span>, kernel_size<span class="op">=</span>(<span class="dv">25</span>, <span class="dv">25</span>), stride<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plot_convs(image, conv_layer, axis<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter5_cnns-pt1_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>With CNN we are no longer flattening our data, so what are our “features”? Our features are called “channels” in CNN-lingo -&gt; they are like the colour channels in an image: - A grayscale image has 1 feature/channel - A coloured image has 3 features/channel</p>
+<p><img src="img/channels-1.png" class="img-fluid"></p>
+<p><img src="img/channels-2.png" class="img-fluid"></p>
+<p>What’s important with CNNs is that the <strong>size of our input data does not impact how many parameters we have in our convolutonal layers</strong>. For example, your kernels don’t care how big your image is (i.e., 28 x 28 or 256 x 256), all that matters is: 1. How many features (“channels”) you have: <code>in_channels</code> 2. How many filters you use in each layer: <code>out_channels</code> 3. How big the filters are: <code>kernel_size</code></p>
+<p>Let’s see some diagrams:</p>
+<p><img src="img/cnn-7.png" class="img-fluid"></p>
+<p>For coloured images (3 channels):</p>
+<p><img src="img/cnn-8.png" class="img-fluid"></p>
+</section>
+<section id="ingredient-2-flattening" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="ingredient-2-flattening"><span class="header-section-number">5.5.2</span> 2.2. Ingredient 2: Flattening</h3>
+<p>With our brand new, shiny convolutional layers, we’re basically just passing images through the network - cool!</p>
+<p>But we’re going to eventually want to do some regression or classification. That means that by the end of our network, we are going to need to <code>torch.nn.Flatten()</code> our images:</p>
+<p><img src="img/cnn-9.png" class="img-fluid"></p>
+<p>Let’s make that simple CNN above in PyTorch:</p>
+<div class="cell" data-tags="[]" data-execution_count="131">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> prod</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CNN(torch.nn.Module):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.main <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            torch.nn.Conv2d(in_channels<span class="op">=</span><span class="dv">1</span>, out_channels<span class="op">=</span><span class="dv">3</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            torch.nn.ReLU(),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            torch.nn.Conv2d(in_channels<span class="op">=</span><span class="dv">3</span>, out_channels<span class="op">=</span><span class="dv">2</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            torch.nn.ReLU(),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            torch.nn.Flatten(),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">20000</span>, <span class="dv">1</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.main(x)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="132">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> CNN()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>summary(model, (<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="132">
+<pre><code>==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+CNN                                      [1, 1]                    --
+├─Sequential: 1-1                        [1, 1]                    --
+│    └─Conv2d: 2-1                       [1, 3, 100, 100]          30
+│    └─ReLU: 2-2                         [1, 3, 100, 100]          --
+│    └─Conv2d: 2-3                       [1, 2, 100, 100]          56
+│    └─ReLU: 2-4                         [1, 2, 100, 100]          --
+│    └─Flatten: 2-5                      [1, 20000]                --
+│    └─Linear: 2-6                       [1, 1]                    20,001
+==========================================================================================
+Total params: 20,087
+Trainable params: 20,087
+Non-trainable params: 0
+Total mult-adds (M): 0.88
+==========================================================================================
+Input size (MB): 0.04
+Forward/backward pass size (MB): 0.40
+Params size (MB): 0.08
+Estimated Total Size (MB): 0.52
+==========================================================================================</code></pre>
+</div>
+</div>
+<p>Oh man! 20,000 parameters in that last layer, geez. Is there a way we can reduce this somehow? Glad you asked! See you in the next section.</p>
+</section>
+<section id="ingredient-3-pooling" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="ingredient-3-pooling"><span class="header-section-number">5.5.3</span> 2.3. Ingredient 3: Pooling</h3>
+<p>Pooling is how we can reduce the number of parameters we get out of a <code>torch.nn.Flatten()</code>. It’s pretty simple, we just aggregate the data, usually using the maximum or average of a window of pixels. Here’s an example of max pooling:</p>
+<p><img src="img/pool.gif" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Source: modified after <a href="https://www.oreilly.com/radar/visualizing-convolutional-neural-networks/">www.oreilly.com/</a>.</p>
+</blockquote>
+<p>We use “pooling layers” to reduce the shape of our image as it’s passing through the network. So when we eventually <code>torch.nn.Flatten()</code>, we’ll have less features in that flattened layer! We can implement pooling with <code>torch.nn.MaxPool2d()</code>. Let’s try it out and reduce the number of parameters:</p>
+<div class="cell" data-tags="[]" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CNN(torch.nn.Module):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.main <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            torch.nn.Conv2d(in_channels<span class="op">=</span><span class="dv">1</span>, out_channels<span class="op">=</span><span class="dv">3</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            torch.nn.ReLU(),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>            torch.nn.MaxPool2d(mp_kernel_size),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            torch.nn.Conv2d(in_channels<span class="op">=</span><span class="dv">3</span>, out_channels<span class="op">=</span><span class="dv">2</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>            torch.nn.ReLU(),</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            torch.nn.MaxPool2d(mp_kernel_size),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>            torch.nn.Flatten(),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">1250</span>, <span class="dv">1</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.main(x)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> CNN()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>summary(model, (<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="134">
+<pre><code>==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+CNN                                      [1, 1]                    --
+├─Sequential: 1-1                        [1, 1]                    --
+│    └─Conv2d: 2-1                       [1, 3, 100, 100]          30
+│    └─ReLU: 2-2                         [1, 3, 100, 100]          --
+│    └─MaxPool2d: 2-3                    [1, 3, 50, 50]            --
+│    └─Conv2d: 2-4                       [1, 2, 50, 50]            56
+│    └─ReLU: 2-5                         [1, 2, 50, 50]            --
+│    └─MaxPool2d: 2-6                    [1, 2, 25, 25]            --
+│    └─Flatten: 2-7                      [1, 1250]                 --
+│    └─Linear: 2-8                       [1, 1]                    1,251
+==========================================================================================
+Total params: 1,337
+Trainable params: 1,337
+Non-trainable params: 0
+Total mult-adds (M): 0.44
+==========================================================================================
+Input size (MB): 0.04
+Forward/backward pass size (MB): 0.28
+Params size (MB): 0.01
+Estimated Total Size (MB): 0.33
+==========================================================================================</code></pre>
+</div>
+</div>
+<p>We reduced that last layer to 1,251 parameters. Nice job!</p>
+</section>
+</section>
+<section id="the-cnn-recipe-book" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="the-cnn-recipe-book"><span class="header-section-number">5.6</span> 3. The CNN Recipe Book</h2>
+<hr>
+<p>Here’s a CNN diagram of a famous architecture called <a href="https://en.wikipedia.org/wiki/AlexNet">AlexNet</a> (we’ll talk more about “famous architectures” next Chapter):</p>
+<p><img src="img/alexnet.png" class="img-fluid"></p>
+<p>You actually know what all of the above means now! But, deep learning and CNN architecture remains very much an art. Here is my general recipe book (based on experience, common practice, and popular pre-made architectures - more on those next chapter).</p>
+<p>Typical ingredients (in order): - Convolution layer(s): <code>torch.nn.Conv2d</code> - Activation function: <code>torch.nn.ReLU</code>, <code>torch.nn.Sigmoid</code>, <code>torch.nn.Softplus</code>, etc. - (optional) Batch normalization: <code>torch.nn.BatchNorm2d</code> (more on that next Chapter) - (optional) Pooling: <code>torch.nn.MaxPool2d</code> - (optional) Drop out: <code>torch.nn.Dropout</code> - Flatten: <code>torch.nn.Flatten</code></p>
+</section>
+<section id="cnn-vs-fully-connected-nn" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="cnn-vs-fully-connected-nn"><span class="header-section-number">5.7</span> 4. CNN vs Fully Connected NN</h2>
+<hr>
+<p>As an example of the parameter savings introduced when using CNNs with structured data, let’s compare the Bitmoji classifier from last chapter, with an equivalent CNN version.</p>
+<p>We’ll replace all linear layers with convolutional layers with 3 kernels of size (3, 3) and will assume an image size of 128 x 128:</p>
+<div class="cell" data-tags="[]" data-execution_count="135">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> linear_block(input_size, output_size):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> torch.nn.Sequential(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        torch.nn.Linear(input_size, output_size),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        torch.nn.ReLU()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> conv_block(input_channels, output_channels):</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> torch.nn.Sequential(</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        torch.nn.Conv2d(input_channels, output_channels, (<span class="dv">3</span>, <span class="dv">3</span>), padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        torch.nn.ReLU()</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NN(torch.nn.Module):</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_size):</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.main <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>            linear_block(input_size, <span class="dv">256</span>),</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>            linear_block(<span class="dv">256</span>, <span class="dv">128</span>),</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>            linear_block(<span class="dv">128</span>, <span class="dv">64</span>),</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>            linear_block(<span class="dv">64</span>, <span class="dv">16</span>),</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">16</span>, <span class="dv">1</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.main(x)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CNN(torch.nn.Module):</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_channels):</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.main <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>            conv_block(input_channels, <span class="dv">3</span>),</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>            conv_block(<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>            conv_block(<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>            conv_block(<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>            conv_block(<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>            torch.nn.Flatten(),</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>            torch.nn.Linear(<span class="dv">49152</span>, <span class="dv">1</span>)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.main(x)</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> NN(input_size<span class="op">=</span><span class="dv">128</span><span class="op">*</span><span class="dv">128</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>summary(model, (<span class="dv">1</span>, <span class="dv">128</span><span class="op">*</span><span class="dv">128</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="137">
+<pre><code>==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+NN                                       [1, 1]                    --
+├─Sequential: 1-1                        [1, 1]                    --
+│    └─Sequential: 2-1                   [1, 256]                  --
+│    │    └─Linear: 3-1                  [1, 256]                  4,194,560
+│    │    └─ReLU: 3-2                    [1, 256]                  --
+│    └─Sequential: 2-2                   [1, 128]                  --
+│    │    └─Linear: 3-3                  [1, 128]                  32,896
+│    │    └─ReLU: 3-4                    [1, 128]                  --
+│    └─Sequential: 2-3                   [1, 64]                   --
+│    │    └─Linear: 3-5                  [1, 64]                   8,256
+│    │    └─ReLU: 3-6                    [1, 64]                   --
+│    └─Sequential: 2-4                   [1, 16]                   --
+│    │    └─Linear: 3-7                  [1, 16]                   1,040
+│    │    └─ReLU: 3-8                    [1, 16]                   --
+│    └─Linear: 2-5                       [1, 1]                    17
+==========================================================================================
+Total params: 4,236,769
+Trainable params: 4,236,769
+Non-trainable params: 0
+Total mult-adds (M): 4.24
+==========================================================================================
+Input size (MB): 0.07
+Forward/backward pass size (MB): 0.00
+Params size (MB): 16.95
+Estimated Total Size (MB): 17.02
+==========================================================================================</code></pre>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="138">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> CNN(input_channels<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>summary(model, (<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">128</span>, <span class="dv">128</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="138">
+<pre><code>==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+CNN                                      [1, 1]                    --
+├─Sequential: 1-1                        [1, 1]                    --
+│    └─Sequential: 2-1                   [1, 3, 128, 128]          --
+│    │    └─Conv2d: 3-1                  [1, 3, 128, 128]          30
+│    │    └─ReLU: 3-2                    [1, 3, 128, 128]          --
+│    └─Sequential: 2-2                   [1, 3, 128, 128]          --
+│    │    └─Conv2d: 3-3                  [1, 3, 128, 128]          84
+│    │    └─ReLU: 3-4                    [1, 3, 128, 128]          --
+│    └─Sequential: 2-3                   [1, 3, 128, 128]          --
+│    │    └─Conv2d: 3-5                  [1, 3, 128, 128]          84
+│    │    └─ReLU: 3-6                    [1, 3, 128, 128]          --
+│    └─Sequential: 2-4                   [1, 3, 128, 128]          --
+│    │    └─Conv2d: 3-7                  [1, 3, 128, 128]          84
+│    │    └─ReLU: 3-8                    [1, 3, 128, 128]          --
+│    └─Sequential: 2-5                   [1, 3, 128, 128]          --
+│    │    └─Conv2d: 3-9                  [1, 3, 128, 128]          84
+│    │    └─ReLU: 3-10                   [1, 3, 128, 128]          --
+│    └─Flatten: 2-6                      [1, 49152]                --
+│    └─Linear: 2-7                       [1, 1]                    49,153
+==========================================================================================
+Total params: 49,519
+Trainable params: 49,519
+Non-trainable params: 0
+Total mult-adds (M): 6.05
+==========================================================================================
+Input size (MB): 0.07
+Forward/backward pass size (MB): 1.97
+Params size (MB): 0.20
+Estimated Total Size (MB): 2.23
+==========================================================================================</code></pre>
+</div>
+</div>
+<p>We don’t even have any pooling and our CNN still has a “meager” 49,519 parameters vs 4,236,769 for the fully-connected network. This is a somewhat arbitray comparison but it proves my point.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter4_neural-networks-pt2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: Training Neural Networks</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter6_cnns-pt2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chapter 6: Advanced Convolutional Neural Networks</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
