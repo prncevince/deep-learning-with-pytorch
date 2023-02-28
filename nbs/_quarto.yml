@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: _docs
+  post-render:
+    - "touch _docs/.nojekyll"
 
 book:
   site-url: "https://prncevince.github.io/deep-learning-with-pytorch"

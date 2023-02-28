@@ -263,22 +263,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#chapter-outline" id="toc-chapter-outline" class="nav-link active" data-scroll-target="#chapter-outline"><span class="header-section-number">5.1</span> Chapter Outline</a></li>
-  <li><a href="#chapter-learning-objectives" id="toc-chapter-learning-objectives" class="nav-link" data-scroll-target="#chapter-learning-objectives"><span class="header-section-number">5.2</span> Chapter Learning Objectives</a></li>
-  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">5.3</span> Imports</a></li>
-  <li><a href="#convolutional-neural-networks-cnns" id="toc-convolutional-neural-networks-cnns" class="nav-link" data-scroll-target="#convolutional-neural-networks-cnns"><span class="header-section-number">5.4</span> 1. Convolutional Neural Networks (CNNs)</a>
+  <li><a href="#chapter-learning-objectives" id="toc-chapter-learning-objectives" class="nav-link active" data-scroll-target="#chapter-learning-objectives"><span class="header-section-number">5.1</span> Chapter Learning Objectives</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">5.2</span> Imports</a></li>
+  <li><a href="#convolutional-neural-networks-cnns" id="toc-convolutional-neural-networks-cnns" class="nav-link" data-scroll-target="#convolutional-neural-networks-cnns"><span class="header-section-number">5.3</span> 1. Convolutional Neural Networks (CNNs)</a>
   <ul class="collapse">
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">5.4.1</span> 1.1. Motivation</a></li>
-  <li><a href="#convolutions-and-filters" id="toc-convolutions-and-filters" class="nav-link" data-scroll-target="#convolutions-and-filters"><span class="header-section-number">5.4.2</span> 1.2. Convolutions and Filters</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">5.3.1</span> 1.1. Motivation</a></li>
+  <li><a href="#convolutions-and-filters" id="toc-convolutions-and-filters" class="nav-link" data-scroll-target="#convolutions-and-filters"><span class="header-section-number">5.3.2</span> 1.2. Convolutions and Filters</a></li>
   </ul></li>
-  <li><a href="#cooking-up-a-cnn" id="toc-cooking-up-a-cnn" class="nav-link" data-scroll-target="#cooking-up-a-cnn"><span class="header-section-number">5.5</span> 2. Cooking up a CNN</a>
+  <li><a href="#cooking-up-a-cnn" id="toc-cooking-up-a-cnn" class="nav-link" data-scroll-target="#cooking-up-a-cnn"><span class="header-section-number">5.4</span> 2. Cooking up a CNN</a>
   <ul class="collapse">
-  <li><a href="#ingredient-1-convolutional-layers" id="toc-ingredient-1-convolutional-layers" class="nav-link" data-scroll-target="#ingredient-1-convolutional-layers"><span class="header-section-number">5.5.1</span> 2.1. Ingredient 1: Convolutional Layers</a></li>
-  <li><a href="#ingredient-2-flattening" id="toc-ingredient-2-flattening" class="nav-link" data-scroll-target="#ingredient-2-flattening"><span class="header-section-number">5.5.2</span> 2.2. Ingredient 2: Flattening</a></li>
-  <li><a href="#ingredient-3-pooling" id="toc-ingredient-3-pooling" class="nav-link" data-scroll-target="#ingredient-3-pooling"><span class="header-section-number">5.5.3</span> 2.3. Ingredient 3: Pooling</a></li>
+  <li><a href="#ingredient-1-convolutional-layers" id="toc-ingredient-1-convolutional-layers" class="nav-link" data-scroll-target="#ingredient-1-convolutional-layers"><span class="header-section-number">5.4.1</span> 2.1. Ingredient 1: Convolutional Layers</a></li>
+  <li><a href="#ingredient-2-flattening" id="toc-ingredient-2-flattening" class="nav-link" data-scroll-target="#ingredient-2-flattening"><span class="header-section-number">5.4.2</span> 2.2. Ingredient 2: Flattening</a></li>
+  <li><a href="#ingredient-3-pooling" id="toc-ingredient-3-pooling" class="nav-link" data-scroll-target="#ingredient-3-pooling"><span class="header-section-number">5.4.3</span> 2.3. Ingredient 3: Pooling</a></li>
   </ul></li>
-  <li><a href="#the-cnn-recipe-book" id="toc-the-cnn-recipe-book" class="nav-link" data-scroll-target="#the-cnn-recipe-book"><span class="header-section-number">5.6</span> 3. The CNN Recipe Book</a></li>
-  <li><a href="#cnn-vs-fully-connected-nn" id="toc-cnn-vs-fully-connected-nn" class="nav-link" data-scroll-target="#cnn-vs-fully-connected-nn"><span class="header-section-number">5.7</span> 4. CNN vs Fully Connected NN</a></li>
+  <li><a href="#the-cnn-recipe-book" id="toc-the-cnn-recipe-book" class="nav-link" data-scroll-target="#the-cnn-recipe-book"><span class="header-section-number">5.5</span> 3. The CNN Recipe Book</a></li>
+  <li><a href="#cnn-vs-fully-connected-nn" id="toc-cnn-vs-fully-connected-nn" class="nav-link" data-scroll-target="#cnn-vs-fully-connected-nn"><span class="header-section-number">5.6</span> 4. CNN vs Fully Connected NN</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/prncevince/deep-learning-with-pytorch/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -303,36 +302,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p><img src="../docs/banner.png" class="img-fluid"></p>
+<p><img src="docs/banner.png" class="img-fluid"></p>
 <p><img src="img/block.png" class="img-fluid"></p>
-<section id="chapter-outline" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="chapter-outline"><span class="header-section-number">5.1</span> Chapter Outline</h2>
-<hr>
-<div class="toc">
-<ul class="toc-item">
-<li>
-<span><a href="#Chapter-Learning-Objectives" data-toc-modified-id="Chapter-Learning-Objectives-2">Chapter Learning Objectives</a></span>
-</li>
-<li>
-<span><a href="#Imports" data-toc-modified-id="Imports-3">Imports</a></span>
-</li>
-<li>
-<span><a href="#1.-Convolutional-Neural-Networks-(CNNs)" data-toc-modified-id="1.-Convolutional-Neural-Networks-(CNNs)-4">1. Convolutional Neural Networks (CNNs)</a></span>
-</li>
-<li>
-<span><a href="#2.-Cooking-up-a-CNN" data-toc-modified-id="2.-Cooking-up-a-CNN-5">2. Cooking up a CNN</a></span>
-</li>
-<li>
-<span><a href="#3.-The-CNN-Recipe-Book" data-toc-modified-id="3.-The-CNN-Recipe-Book-6">3. The CNN Recipe Book</a></span>
-</li>
-<li>
-<span><a href="#4.-CNN-vs-Fully-Connected-NN" data-toc-modified-id="4.-CNN-vs-Fully-Connected-NN-7">4. CNN vs Fully Connected NN</a></span>
-</li>
-</ul>
-</div>
-</section>
-<section id="chapter-learning-objectives" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="chapter-learning-objectives"><span class="header-section-number">5.2</span> Chapter Learning Objectives</h2>
+<section id="chapter-learning-objectives" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="chapter-learning-objectives"><span class="header-section-number">5.1</span> Chapter Learning Objectives</h2>
 <hr>
 <ul>
 <li>Describe the terms convolution, kernel/filter, pooling, and flattening</li>
@@ -342,8 +315,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Discuss the key differences between CNNs and fully connected NNs</li>
 </ul>
 </section>
-<section id="imports" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="imports"><span class="header-section-number">5.3</span> Imports</h2>
+<section id="imports" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="imports"><span class="header-section-number">5.2</span> Imports</h2>
 <hr>
 <div class="cell" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -356,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">16</span>, <span class="st">'axes.labelweight'</span>: <span class="st">'bold'</span>, <span class="st">'axes.grid'</span>: <span class="va">False</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="convolutional-neural-networks-cnns" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="convolutional-neural-networks-cnns"><span class="header-section-number">5.4</span> 1. Convolutional Neural Networks (CNNs)</h2>
+<section id="convolutional-neural-networks-cnns" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="convolutional-neural-networks-cnns"><span class="header-section-number">5.3</span> 1. Convolutional Neural Networks (CNNs)</h2>
 <hr>
-<section id="motivation" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">5.4.1</span> 1.1. Motivation</h3>
+<section id="motivation" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">5.3.1</span> 1.1. Motivation</h3>
 <p>Up until now we’ve been dealing with “fully connected neural networks” meaning that every neuron in a given layer is connected to every neuron in the next layer. This has two key implications: 1. It results in a LOT of parameters. 2. The order of our features doesn’t matter.</p>
 <p>Consider the simple image and fully connected network below:</p>
 <p><img src="img/cnn-1.png" class="img-fluid"></p>
@@ -373,14 +346,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As it stands, each group of 2 x 2 pixels has 4 unique weights associated with it (one for each pixel), which are being summed up into a single value in the hidden layer. But we don’t need the weights to be different for each group, we’re looking for <strong>structure</strong>, we don’t care if my face is in the top left or the bottom right, we’re just looking for a face!</p>
 <p>Let’s summarise the weights into a weight “filter”:</p>
 <p><img src="img/cnn-4.png" class="img-fluid"></p>
-<p><img src="chapter5_cnns-pt1_files/figure-html/cbd47206-1-7cedca66-b16e-46de-8c83-15bd211eaa9d.png" class="img-fluid" alt="image.png"> - Let’s see how the filter works - We’ll display some arbitrary values for our pixels - The filter “convolves” over each group of pixels, multiplies corresponding elements and sums them up to give the values in the output nodes:</p>
+<p><img src="chapter5_cnns-pt1_files/figure-html/56e89767-1-7cedca66-b16e-46de-8c83-15bd211eaa9d.png" class="img-fluid" alt="image.png"> - Let’s see how the filter works - We’ll display some arbitrary values for our pixels - The filter “convolves” over each group of pixels, multiplies corresponding elements and sums them up to give the values in the output nodes:</p>
 <p><img src="img/cnn-5.gif" class="img-fluid"></p>
 <p>As we’ll see, we can add as many of these “filters” as we like to make more complex models that can identify more useful things:</p>
 <p><img src="img/cnn-6.png" class="img-fluid"></p>
 <p>We just made a <strong>convolutional neural network</strong> (CNN). Instead of fully-connected hidden nodes, we have 2D filters that we “convolve” over our input data. This has two key advantages: 1. We have less parameters than a fully connected network. 2. We preserve the useful structure of our data.</p>
 </section>
-<section id="convolutions-and-filters" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="convolutions-and-filters"><span class="header-section-number">5.4.2</span> 1.2. Convolutions and Filters</h3>
+<section id="convolutions-and-filters" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="convolutions-and-filters"><span class="header-section-number">5.3.2</span> 1.2. Convolutions and Filters</h3>
 <p>Convolution really just means “to pass over the data”. What are we “passing”? Our filters - which are also called <strong>kernels</strong>. Here’s another gif like the one we saw earlier:</p>
 <p><img src="img/conv-1.gif" class="img-fluid"></p>
 <blockquote class="blockquote">
@@ -455,11 +428,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’ll look more at these below.</p>
 </section>
 </section>
-<section id="cooking-up-a-cnn" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="cooking-up-a-cnn"><span class="header-section-number">5.5</span> 2. Cooking up a CNN</h2>
+<section id="cooking-up-a-cnn" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="cooking-up-a-cnn"><span class="header-section-number">5.4</span> 2. Cooking up a CNN</h2>
 <hr>
-<section id="ingredient-1-convolutional-layers" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="ingredient-1-convolutional-layers"><span class="header-section-number">5.5.1</span> 2.1. Ingredient 1: Convolutional Layers</h3>
+<section id="ingredient-1-convolutional-layers" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="ingredient-1-convolutional-layers"><span class="header-section-number">5.4.1</span> 2.1. Ingredient 1: Convolutional Layers</h3>
 <p>I showed some example kernels above. In CNNs the actual values in <strong>the kernels are the weights your network will learn during training</strong>: your network will learn what structures are important for prediction.</p>
 <p>In PyTorch, convolutional layers are defined as <code>torch.nn.Conv2d</code>, there are 5 important arguments we need to know: 1. <code>in_channels</code>: how many features are we passing in. Our features are our colour bands, in greyscale, we have 1 feature, in colour, we have 3 channels. 2. <code>out_channels</code>: how many kernels do we want to use. Analogous to the number of hidden nodes in a hidden layer of a fully connected network. 3. <code>kernel_size</code>: the size of the kernel. Above we were using 3x3. Common sizes are 3x3, 5x5, 7x7. 4. <code>stride</code>: the “step-size” of the kernel. 5. <code>padding</code>: the number of pixels we should pad to the outside of the image so we can get edge pixels.</p>
 <div class="cell" data-tags="[]" data-execution_count="55">
@@ -525,8 +498,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For coloured images (3 channels):</p>
 <p><img src="img/cnn-8.png" class="img-fluid"></p>
 </section>
-<section id="ingredient-2-flattening" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="ingredient-2-flattening"><span class="header-section-number">5.5.2</span> 2.2. Ingredient 2: Flattening</h3>
+<section id="ingredient-2-flattening" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="ingredient-2-flattening"><span class="header-section-number">5.4.2</span> 2.2. Ingredient 2: Flattening</h3>
 <p>With our brand new, shiny convolutional layers, we’re basically just passing images through the network - cool!</p>
 <p>But we’re going to eventually want to do some regression or classification. That means that by the end of our network, we are going to need to <code>torch.nn.Flatten()</code> our images:</p>
 <p><img src="img/cnn-9.png" class="img-fluid"></p>
@@ -580,8 +553,8 @@ Estimated Total Size (MB): 0.52
 </div>
 <p>Oh man! 20,000 parameters in that last layer, geez. Is there a way we can reduce this somehow? Glad you asked! See you in the next section.</p>
 </section>
-<section id="ingredient-3-pooling" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="ingredient-3-pooling"><span class="header-section-number">5.5.3</span> 2.3. Ingredient 3: Pooling</h3>
+<section id="ingredient-3-pooling" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="ingredient-3-pooling"><span class="header-section-number">5.4.3</span> 2.3. Ingredient 3: Pooling</h3>
 <p>Pooling is how we can reduce the number of parameters we get out of a <code>torch.nn.Flatten()</code>. It’s pretty simple, we just aggregate the data, usually using the maximum or average of a window of pixels. Here’s an example of max pooling:</p>
 <p><img src="img/pool.gif" class="img-fluid"></p>
 <blockquote class="blockquote">
@@ -640,16 +613,16 @@ Estimated Total Size (MB): 0.33
 <p>We reduced that last layer to 1,251 parameters. Nice job!</p>
 </section>
 </section>
-<section id="the-cnn-recipe-book" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="the-cnn-recipe-book"><span class="header-section-number">5.6</span> 3. The CNN Recipe Book</h2>
+<section id="the-cnn-recipe-book" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="the-cnn-recipe-book"><span class="header-section-number">5.5</span> 3. The CNN Recipe Book</h2>
 <hr>
 <p>Here’s a CNN diagram of a famous architecture called <a href="https://en.wikipedia.org/wiki/AlexNet">AlexNet</a> (we’ll talk more about “famous architectures” next Chapter):</p>
 <p><img src="img/alexnet.png" class="img-fluid"></p>
 <p>You actually know what all of the above means now! But, deep learning and CNN architecture remains very much an art. Here is my general recipe book (based on experience, common practice, and popular pre-made architectures - more on those next chapter).</p>
 <p>Typical ingredients (in order): - Convolution layer(s): <code>torch.nn.Conv2d</code> - Activation function: <code>torch.nn.ReLU</code>, <code>torch.nn.Sigmoid</code>, <code>torch.nn.Softplus</code>, etc. - (optional) Batch normalization: <code>torch.nn.BatchNorm2d</code> (more on that next Chapter) - (optional) Pooling: <code>torch.nn.MaxPool2d</code> - (optional) Drop out: <code>torch.nn.Dropout</code> - Flatten: <code>torch.nn.Flatten</code></p>
 </section>
-<section id="cnn-vs-fully-connected-nn" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="cnn-vs-fully-connected-nn"><span class="header-section-number">5.7</span> 4. CNN vs Fully Connected NN</h2>
+<section id="cnn-vs-fully-connected-nn" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="cnn-vs-fully-connected-nn"><span class="header-section-number">5.6</span> 4. CNN vs Fully Connected NN</h2>
 <hr>
 <p>As an example of the parameter savings introduced when using CNNs with structured data, let’s compare the Bitmoji classifier from last chapter, with an equivalent CNN version.</p>
 <p>We’ll replace all linear layers with convolutional layers with 3 kernels of size (3, 3) and will assume an image size of 128 x 128:</p>
