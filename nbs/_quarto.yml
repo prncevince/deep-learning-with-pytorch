@@ -1,0 +1,46 @@
+project:
+  type: book
+  output-dir: _docs
+
+book:
+  site-url: "https://prncevince.github.io/deep-learning-with-pytorch"
+  repo-url: "https://github.com/prncevince/deep-learning-with-pytorch"
+  repo-branch: main
+  favicon: docs/favicon.png 
+  twitter-card: true
+  open-graph: true
+  repo-actions: [issue]
+  reader-mode: true
+    # navbar:
+    #   background: primary
+    #   search: true
+    # sidebar:
+    #   style: floating
+  chapters: 
+    - index.qmd
+    - part: "Chapters"
+      chapters:
+        - chapter1_gradient-descent.ipynb
+        - chapter2_stochastic-gradient-descent.ipynb
+        - chapter3_pytorch-neural-networks-pt1.ipynb
+        - chapter4_neural-networks-pt2.ipynb
+        - chapter5_cnns-pt1.ipynb
+        - chapter6_cnns-pt2.ipynb
+        - chapter7_advanced-deep-learning.ipynb
+  appendices:
+    - appendixA_gradients.ipynb
+    - appendixB_logistic-loss.ipynb
+    - appendixC_computing-derivatives.ipynb
+    - appendixD_bitmoji-CNN.ipynb
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    grid:
+      body-width: 900px
+      sidebar-width: 300px
+      margin-width: 300px
+      gutter-width: 1.5rem
+

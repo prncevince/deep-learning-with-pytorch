@@ -1,6 +1,8 @@
 # Python
 __pycache__/
 .ipynb_checkpoints/
+# nbdev 
+_proc/
 # R/RStudio
 .Rproj.user
 .Rhistory
@@ -12,7 +14,9 @@ __pycache__/
 test.Rmd
 test.html
 # Quarto
-/quarto-cli
+/_freeze/
+/.quarto-cli/
+.quarto/
 # website hosted content - default Hugo `publishDir` config param
 # see https://gohugo.io/getting-started/configuration/#publishdir
 /public
