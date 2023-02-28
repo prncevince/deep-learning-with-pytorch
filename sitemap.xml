@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/index.html</loc>
-    <lastmod>2023-02-28T18:10:52.264Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.211Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter1_gradient-descent.html</loc>
-    <lastmod>2023-02-28T18:10:52.273Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.219Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter2_stochastic-gradient-descent.html</loc>
-    <lastmod>2023-02-28T18:10:52.280Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.228Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter3_pytorch-neural-networks-pt1.html</loc>
-    <lastmod>2023-02-28T18:10:52.289Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.237Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter4_neural-networks-pt2.html</loc>
-    <lastmod>2023-02-28T18:10:52.304Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.248Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter5_cnns-pt1.html</loc>
-    <lastmod>2023-02-28T18:10:52.306Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.250Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter6_cnns-pt2.html</loc>
-    <lastmod>2023-02-28T18:10:52.309Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.253Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/chapter7_advanced-deep-learning.html</loc>
-    <lastmod>2023-02-28T18:10:52.314Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.262Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/appendixa_gradients.html</loc>
-    <lastmod>2023-02-28T18:10:52.317Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.263Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/appendixb_logistic-loss.html</loc>
-    <lastmod>2023-02-28T18:10:52.322Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.271Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/appendixc_computing-derivatives.html</loc>
-    <lastmod>2023-02-28T18:10:52.323Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.273Z</lastmod>
   </url>
   <url>
     <loc>https://prncevince.github.io/deep-learning-with-pytorch/appendixd_bitmoji-cnn.html</loc>
-    <lastmod>2023-02-28T18:10:52.324Z</lastmod>
+    <lastmod>2023-02-28T19:28:21.276Z</lastmod>
   </url>
 </urlset>
