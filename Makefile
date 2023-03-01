@@ -1,7 +1,10 @@
-.PHONY: docs docs-preview conda-env-export conda-env-create
+.PHONY: docs docs-dev docs-preview conda-env-export conda-env-create
 
 docs:
 	nbdev_docs
+
+docs-dev:
+	nbdev_preview
 
 docs-preview:
 	python -m http.server -d _docs
