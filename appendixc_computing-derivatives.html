@@ -317,7 +317,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="gradients-introduction" class="level2" data-number="C.1">
 <h2 data-number="C.1" class="anchored" data-anchor-id="gradients-introduction"><span class="header-section-number">C.1</span> 1. Gradients Introduction</h2>
 <hr>
-<p>What if we are optimizing a function and we don’t know its derivative/gradient. This could happen because: - You’re optimizing the parameters of a computer simulation - a robot - weather / atmospheric science - financial simulation - etc. - You’re optimizing the hyperparameters of a machine learning algorithm - The derivative is just too much effort to compute and it’s slowing down your prototyping efforts</p>
+<p>What if we are optimizing a function and we don’t know its derivative/gradient. This could happen because:</p>
+<ul>
+<li>You’re optimizing the parameters of a computer simulation
+<ul>
+<li>a robot</li>
+<li>weather / atmospheric science</li>
+<li>financial simulation</li>
+<li>etc.</li>
+</ul></li>
+<li>You’re optimizing the hyperparameters of a machine learning algorithm</li>
+<li>The derivative is just too much effort to compute and it’s slowing down your prototyping efforts</li>
+</ul>
 <p>What to do? Well, there are 3 main approaches to computing derivatives with a computer:</p>
 <ol type="1">
 <li>Symbolic differentiation</li>
@@ -446,7 +457,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="automatic-differentiation" class="level2" data-number="C.4">
 <h2 data-number="C.4" class="anchored" data-anchor-id="automatic-differentiation"><span class="header-section-number">C.4</span> 4. Automatic Differentiation</h2>
 <hr>
-<p>Automatic differentiation (AD) is another way to take the derivative given some code that computes <span class="math inline">\(f\)</span>. It is advertised as the “best of both worlds” between symbolic and numerical differentiation: - Pro: takes the code as input, not math. - Pro: does not have the problem of choosing <span class="math inline">\(h\)</span>, or the extra <span class="math inline">\(O(d)\)</span> cost. - Con: some AD software packages have limitations, hurt code readability. - Con: large space complexity.</p>
+<p>Automatic differentiation (AD) is another way to take the derivative given some code that computes <span class="math inline">\(f\)</span>. It is advertised as the “best of both worlds” between symbolic and numerical differentiation:</p>
+<ul>
+<li>Pro: takes the code as input, not math.</li>
+<li>Pro: does not have the problem of choosing <span class="math inline">\(h\)</span>, or the extra <span class="math inline">\(O(d)\)</span> cost.</li>
+<li>Con: some AD software packages have limitations, hurt code readability.</li>
+<li>Con: large space complexity.</li>
+</ul>
 <p>There are two main types of AD, <em>forward mode</em> and <em>reverse mode</em> AD. We’ll be discussing reverse mode here. Basically, AD keeps track of the gradient of primitive operations and uses the chain rule to link them together. We’ll use a package called <code>AutoGrad</code> to demo AD.</p>
 <p>Demonstration 1: <span class="math inline">\(\sin(x)\)</span></p>
 <div class="cell" data-execution_count="48">
