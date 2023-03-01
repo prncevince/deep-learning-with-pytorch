@@ -13,4 +13,4 @@ conda-env-create:
 	conda env create -f dl-pytorch.yml
 
 conda-env-export:
-	conda env export -n dl-pytorch > dl-pytorch.yml
+	conda env export -n > dl-pytorch.yml

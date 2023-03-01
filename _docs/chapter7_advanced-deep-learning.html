@@ -340,21 +340,21 @@ var n,i=t("./lib/build-log"),a=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#chapter-learning-objectives" id="toc-chapter-learning-objectives" class="nav-link active" data-scroll-target="#chapter-learning-objectives"><span class="header-section-number">7.1</span> Chapter Learning Objectives</a></li>
-  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports"><span class="header-section-number">7.2</span> Imports</a></li>
-  <li><a href="#autoencoders" id="toc-autoencoders" class="nav-link" data-scroll-target="#autoencoders"><span class="header-section-number">7.3</span> 1. Autoencoders</a>
+  <li><a href="#chapter-learning-objectives" id="toc-chapter-learning-objectives" class="nav-link active" data-scroll-target="#chapter-learning-objectives">Chapter Learning Objectives</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">Imports</a></li>
+  <li><a href="#autoencoders" id="toc-autoencoders" class="nav-link" data-scroll-target="#autoencoders"><span class="header-section-number">7.1</span> 1. Autoencoders</a>
   <ul class="collapse">
-  <li><a href="#example-1-dimensionality-reduction" id="toc-example-1-dimensionality-reduction" class="nav-link" data-scroll-target="#example-1-dimensionality-reduction"><span class="header-section-number">7.3.1</span> 1.1. Example 1: Dimensionality Reduction</a></li>
-  <li><a href="#example-2-image-denoising" id="toc-example-2-image-denoising" class="nav-link" data-scroll-target="#example-2-image-denoising"><span class="header-section-number">7.3.2</span> 1.2. Example 2: Image Denoising</a></li>
+  <li><a href="#example-1-dimensionality-reduction" id="toc-example-1-dimensionality-reduction" class="nav-link" data-scroll-target="#example-1-dimensionality-reduction"><span class="header-section-number">7.1.1</span> 1.1. Example 1: Dimensionality Reduction</a></li>
+  <li><a href="#example-2-image-denoising" id="toc-example-2-image-denoising" class="nav-link" data-scroll-target="#example-2-image-denoising"><span class="header-section-number">7.1.2</span> 1.2. Example 2: Image Denoising</a></li>
   </ul></li>
-  <li><a href="#generative-adversarial-networks-gans" id="toc-generative-adversarial-networks-gans" class="nav-link" data-scroll-target="#generative-adversarial-networks-gans"><span class="header-section-number">7.4</span> 2. Generative Adversarial Networks (GANs)</a>
+  <li><a href="#generative-adversarial-networks-gans" id="toc-generative-adversarial-networks-gans" class="nav-link" data-scroll-target="#generative-adversarial-networks-gans"><span class="header-section-number">7.2</span> 2. Generative Adversarial Networks (GANs)</a>
   <ul class="collapse">
-  <li><a href="#what-are-gans" id="toc-what-are-gans" class="nav-link" data-scroll-target="#what-are-gans"><span class="header-section-number">7.4.1</span> 2.1. What are GANs?</a></li>
-  <li><a href="#an-example-generating-bitmojis" id="toc-an-example-generating-bitmojis" class="nav-link" data-scroll-target="#an-example-generating-bitmojis"><span class="header-section-number">7.4.2</span> 2.2. An Example: Generating Bitmojis</a></li>
+  <li><a href="#what-are-gans" id="toc-what-are-gans" class="nav-link" data-scroll-target="#what-are-gans"><span class="header-section-number">7.2.1</span> 2.1. What are GANs?</a></li>
+  <li><a href="#an-example-generating-bitmojis" id="toc-an-example-generating-bitmojis" class="nav-link" data-scroll-target="#an-example-generating-bitmojis"><span class="header-section-number">7.2.2</span> 2.2. An Example: Generating Bitmojis</a></li>
   </ul></li>
-  <li><a href="#multi-input-networks" id="toc-multi-input-networks" class="nav-link" data-scroll-target="#multi-input-networks"><span class="header-section-number">7.5</span> 3. Multi-input Networks</a></li>
-  <li><a href="#things-i-havent-talked-about" id="toc-things-i-havent-talked-about" class="nav-link" data-scroll-target="#things-i-havent-talked-about"><span class="header-section-number">7.6</span> 4. Things I Haven’t Talked About</a></li>
-  <li><a href="#toms-cheat-sheet" id="toc-toms-cheat-sheet" class="nav-link" data-scroll-target="#toms-cheat-sheet"><span class="header-section-number">7.7</span> 5. Tom’s Cheat Sheet</a></li>
+  <li><a href="#multi-input-networks" id="toc-multi-input-networks" class="nav-link" data-scroll-target="#multi-input-networks"><span class="header-section-number">7.3</span> 3. Multi-input Networks</a></li>
+  <li><a href="#things-i-havent-talked-about" id="toc-things-i-havent-talked-about" class="nav-link" data-scroll-target="#things-i-havent-talked-about"><span class="header-section-number">7.4</span> 4. Things I Haven’t Talked About</a></li>
+  <li><a href="#toms-cheat-sheet" id="toc-toms-cheat-sheet" class="nav-link" data-scroll-target="#toms-cheat-sheet"><span class="header-section-number">7.5</span> 5. Tom’s Cheat Sheet</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/prncevince/deep-learning-with-pytorch/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -380,9 +380,10 @@ var n,i=t("./lib/build-log"),a=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <p><img src="docs/banner.png" class="img-fluid"></p>
+<p><strong>By <a href="https://www.tomasbeuzen.com/">Tomas Beuzen</a> 🚀</strong></p>
 <p><img src="img/force.png" class="img-fluid"></p>
-<section id="chapter-learning-objectives" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="chapter-learning-objectives"><span class="header-section-number">7.1</span> Chapter Learning Objectives</h2>
+<section id="chapter-learning-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="chapter-learning-objectives">Chapter Learning Objectives</h2>
 <hr>
 <ul>
 <li>Describe what an autoencoder is at a high level and what they can be useful for.</li>
@@ -390,8 +391,8 @@ var n,i=t("./lib/build-log"),a=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <li>Describe what a multi-input model is and what they can be useful for.</li>
 </ul>
 </section>
-<section id="imports" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="imports"><span class="header-section-number">7.2</span> Imports</h2>
+<section id="imports" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="imports">Imports</h2>
 <hr>
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -412,14 +413,14 @@ var n,i=t("./lib/build-log"),a=t("./lib/epsilon"),o=t("./lib/intersecter"),s=t("
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">16</span>, <span class="st">'axes.labelweight'</span>: <span class="st">'bold'</span>, <span class="st">'axes.grid'</span>: <span class="va">False</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="autoencoders" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="autoencoders"><span class="header-section-number">7.3</span> 1. Autoencoders</h2>
+<section id="autoencoders" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="autoencoders"><span class="header-section-number">7.1</span> 1. Autoencoders</h2>
 <hr>
 <p>Autoencoders (AE) are networks that are designed to reproduce their input at the output layer. They are composed of an “encoder” and “decoder”. The hidden layers of the AE are typically smaller than the input layers, such that the dimensionality of the data is reduced as it is passed through the encoder, and then expanded again in the decoder:</p>
 <p><img src="img/autoencoder.png" class="img-fluid"></p>
 <p>Why would you want to use such a model? As you can see, AEs perform dimensionality reduction by learning to represent your input features using fewer dimensions. That can be useful for a range of tasks but we’ll look at some specific examples below.</p>
-<section id="example-1-dimensionality-reduction" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="example-1-dimensionality-reduction"><span class="header-section-number">7.3.1</span> 1.1. Example 1: Dimensionality Reduction</h3>
+<section id="example-1-dimensionality-reduction" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="example-1-dimensionality-reduction"><span class="header-section-number">7.1.1</span> 1.1. Example 1: Dimensionality Reduction</h3>
 <p>Here’s some synthetic data of three features and two classes. Can we reduce the dimensionality of this data to two features while preserving the class separation?</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">500</span></span>
@@ -541,8 +542,8 @@ if (outputEl) {{
 </div>
 <p>What did we just do? We used an AE to effectively reduce the number of features in our data.</p>
 </section>
-<section id="example-2-image-denoising" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="example-2-image-denoising"><span class="header-section-number">7.3.2</span> 1.2. Example 2: Image Denoising</h3>
+<section id="example-2-image-denoising" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="example-2-image-denoising"><span class="header-section-number">7.1.2</span> 1.2. Example 2: Image Denoising</h3>
 <p>Okay, let’s do something more interesting. We saw above that AEs can be useful feature reducers (i.e., they can remove unimportant features from our data). This also applies to images and it’s a fun application to de-noise images!</p>
 <p>Take a look at these images of 8’s from the MNIST dataset, I’m going to mess them up by adding some noise to them:</p>
 <div class="cell" data-execution_count="8">
@@ -661,17 +662,21 @@ if (outputEl) {{
 <p>Pretty cool!</p>
 </section>
 </section>
-<section id="generative-adversarial-networks-gans" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="generative-adversarial-networks-gans"><span class="header-section-number">7.4</span> 2. Generative Adversarial Networks (GANs)</h2>
+<section id="generative-adversarial-networks-gans" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="generative-adversarial-networks-gans"><span class="header-section-number">7.2</span> 2. Generative Adversarial Networks (GANs)</h2>
 <hr>
-<section id="what-are-gans" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="what-are-gans"><span class="header-section-number">7.4.1</span> 2.1. What are GANs?</h3>
+<section id="what-are-gans" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="what-are-gans"><span class="header-section-number">7.2.1</span> 2.1. What are GANs?</h3>
 <p><a href="https://arxiv.org/abs/1406.2661">GANs</a> were invented in 2014 by Ian Goodfellow and colleagues. GANs are pretty complex but they are just so cool so I wanted to talk about them briefly. The goal of a GAN is to develop a model that can generate realistic “fake” data, like the face below. &gt;If you look closely, you’ll notice that some things don’t look quite right, like the glasses…</p>
 <p><img src="img/fake-face.jpeg" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Source: modified from <a href="https://thispersondoesnotexist.com/">thispersondoesnotexist.com</a></p>
 </blockquote>
-<p>GANs are mostly used to generate imagery at the moment so I’ll speak about them in that context. The “adversarial” comes from the fact that we actually have two networks “battling” each other: 1. The “Generator”: takes some noise (like Gaussian noise) as input and generates “fake” data (like an image) 2. The “Discriminator”: takes in real and fake data from the generator and attempts to classify it as “real” or “fake”</p>
+<p>GANs are mostly used to generate imagery at the moment so I’ll speak about them in that context. The “adversarial” comes from the fact that we actually have two networks “battling” each other:</p>
+<ol type="1">
+<li>The “Generator”: takes some noise (like Gaussian noise) as input and generates “fake” data (like an image)</li>
+<li>The “Discriminator”: takes in real and fake data from the generator and attempts to classify it as “real” or “fake”</li>
+</ol>
 <p><img src="img/gan.png" class="img-fluid"></p>
 <p>An analogy always helps. Think of the “Generator” as a new counterfeit artist trying to produce realistic-looking famous artworks to sell:</p>
 <p><img src="img/art.png" class="img-fluid"></p>
@@ -679,11 +684,26 @@ if (outputEl) {{
 <p><img src="img/fake.png" class="img-fluid"></p>
 <p>But over time, the “Generator” learns ways to produce art that fools the “Discriminator”. Eventually, the “Generator” gets so good, that the “Discriminator” can’t tell if a piece of art is real or fake - the “Generator” is now able to generate realistic fake artwork! Money, money, money!</p>
 <p><img src="img/art-2.png" class="img-fluid"></p>
-<p>GANs are mostly used to generate imagery at the moment so I’ll focus on that. Training a GAN really happens in two iterative phases: 1. <strong>Train the Discriminator:</strong> - Generate some fake images with the generator - Show the discriminator real images and fake images and get it to classify them correctly (a simple binary classification problem) 2. <strong>Train the Generator:</strong> - Generate fake images with the generator but label them as “real” - At first, the discriminator will easily identify the “fake” images as “fake” (it’s already been trained a little bit to do this) - This means the generator will have a large loss (the discriminator predicted the images as “fake” but the label is “real”) - We use this loss to update the generator’s weights. Next time around, the loss will be less, because the generator will produce some images that the discriminator thinks are real. 3. <strong>Repeat!</strong></p>
+<p>GANs are mostly used to generate imagery at the moment so I’ll focus on that. Training a GAN really happens in two iterative phases:</p>
+<ol type="1">
+<li><strong>Train the Discriminator:</strong>
+<ul>
+<li>Generate some fake images with the generator</li>
+<li>Show the discriminator real images and fake images and get it to classify them correctly (a simple binary classification problem)</li>
+</ul></li>
+<li><strong>Train the Generator:</strong>
+<ul>
+<li>Generate fake images with the generator but label them as “real”</li>
+<li>At first, the discriminator will easily identify the “fake” images as “fake” (it’s already been trained a little bit to do this)</li>
+<li>This means the generator will have a large loss (the discriminator predicted the images as “fake” but the label is “real”)</li>
+<li>We use this loss to update the generator’s weights. Next time around, the loss will be less, because the generator will produce some images that the discriminator thinks are real.</li>
+</ul></li>
+<li><strong>Repeat!</strong></li>
+</ol>
 <p>Enough talk, let’s code it up!</p>
 </section>
-<section id="an-example-generating-bitmojis" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="an-example-generating-bitmojis"><span class="header-section-number">7.4.2</span> 2.2. An Example: Generating Bitmojis</h3>
+<section id="an-example-generating-bitmojis" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="an-example-generating-bitmojis"><span class="header-section-number">7.2.2</span> 2.2. An Example: Generating Bitmojis</h3>
 <p>I’m going to use our favourite bitmoji dataset to try and develop a GAN (this may or may not go well):</p>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Training Parameters</span></span>
@@ -883,13 +903,17 @@ if (outputEl) {{
 <p><img src="img/bitmoji-gan.gif" class="img-fluid"></p>
 </section>
 </section>
-<section id="multi-input-networks" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="multi-input-networks"><span class="header-section-number">7.5</span> 3. Multi-input Networks</h2>
+<section id="multi-input-networks" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="multi-input-networks"><span class="header-section-number">7.3</span> 3. Multi-input Networks</h2>
 <hr>
 <p>Sometimes you’ll want to combine different types of data in a single network. The most common case is combining tabular data with image data, for example, using both real estate data and images of a house to predict its sale price:</p>
 <p><img src="img/multi-input.png" class="img-fluid"></p>
 <p>Source: “<a href="https://www.flickr.com/photos/68089229@N06/17458373552">House</a>” by <a href="https://www.flickr.com/photos/68089229@N06">oatsy40</a>, “<a href="https://www.flickr.com/photos/17573364@N00/433449690">House in Vancouver</a>” by <a href="https://www.flickr.com/photos/17573364@N00">pnwra</a>, “<a href="https://www.flickr.com/photos/21098413@N04/5405425139">House</a>” by <a href="https://www.flickr.com/photos/21098413@N04">noona11</a> all licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&amp;atype=rich">CC BY 2.0</a>.</p>
-<p>In such a problem you may want to combine: 1. a NN for the tabular data 2. a CNN for the image data</p>
+<p>In such a problem you may want to combine:</p>
+<ol type="1">
+<li>a NN for the tabular data</li>
+<li>a CNN for the image data</li>
+</ol>
 <p>The way we often do this is create these two models, and then combine them together into a model that produces a single output. This sounds complicated but it’s pretty easy! We only need one new ingredient which is a concatenation function: <code>torch.cat()</code>. Below is a simple example:</p>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiModel(nn.Module):</span>
@@ -933,8 +957,8 @@ if (outputEl) {{
 </div>
 <p>The above network doesn’t really do anything but show that we can easily combine a CNN and fully connected NN!</p>
 </section>
-<section id="things-i-havent-talked-about" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="things-i-havent-talked-about"><span class="header-section-number">7.6</span> 4. Things I Haven’t Talked About</h2>
+<section id="things-i-havent-talked-about" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="things-i-havent-talked-about"><span class="header-section-number">7.4</span> 4. Things I Haven’t Talked About</h2>
 <hr>
 <p>We’ve talked about a lot in this course, but there’s a lot I haven’t talked about too!</p>
 <ul>
@@ -1016,14 +1040,48 @@ Initializing weights of a Linear layer!</code></pre>
 </div>
 </div>
 </section>
-<section id="toms-cheat-sheet" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="toms-cheat-sheet"><span class="header-section-number">7.7</span> 5. Tom’s Cheat Sheet</h2>
+<section id="toms-cheat-sheet" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="toms-cheat-sheet"><span class="header-section-number">7.5</span> 5. Tom’s Cheat Sheet</h2>
 <hr>
 <p>I thought it might be helpful to write down the general guidelines I follow when approaching a new data modelling problem.</p>
-<p><strong>TABULAR DATA</strong> - Classification: 1. Logisitic Regression + feature engineer 2. XGBoost / LGBM + feature engineer 3. Neural network + feature engineer - Regression: 1. Linear Regression + feature engineer 2. XGBoost / LGBM + feature engineer 3. Neural network + feature engineer</p>
-<p><strong>IMAGE DATA</strong> - Use a CNN: - Option 1: if data is relatively simple, develop CNN from scratch: - Start with 3x3 filters with strides of 1 or 2 - Number of filters proprtional to data complexity, usually 4, 8, 16, 24 - The first convolutional layer should have more channels that the input data - Option 2: transfer learning</p>
-<p><strong>TIME SERIES DATA</strong> 1. AutoRegressive Integrated Moving Average (ARIMA) 2. XGBoost / LGBM + feature engineer 3. Recurrent neural network (RNN)</p>
-<p><strong>AUDIO, VIDEO, OTHER</strong> - Probably some kind of NN</p>
+<p><strong>TABULAR DATA</strong></p>
+<ul>
+<li>Classification:
+<ol type="1">
+<li>Logisitic Regression + feature engineer</li>
+<li>XGBoost / LGBM + feature engineer</li>
+<li>Neural network + feature engineer</li>
+</ol></li>
+<li>Regression:
+<ol type="1">
+<li>Linear Regression + feature engineer</li>
+<li>XGBoost / LGBM + feature engineer</li>
+<li>Neural network + feature engineer</li>
+</ol></li>
+</ul>
+<p><strong>IMAGE DATA</strong></p>
+<ul>
+<li>Use a CNN:
+<ul>
+<li>Option 1: if data is relatively simple, develop CNN from scratch:
+<ul>
+<li>Start with 3x3 filters with strides of 1 or 2</li>
+<li>Number of filters proprtional to data complexity, usually 4, 8, 16, 24</li>
+<li>The first convolutional layer should have more channels that the input data</li>
+</ul></li>
+<li>Option 2: transfer learning</li>
+</ul></li>
+</ul>
+<p><strong>TIME SERIES DATA</strong></p>
+<ol type="1">
+<li>AutoRegressive Integrated Moving Average (ARIMA)</li>
+<li>XGBoost / LGBM + feature engineer</li>
+<li>Recurrent neural network (RNN)</li>
+</ol>
+<p><strong>AUDIO, VIDEO, OTHER</strong></p>
+<ul>
+<li>Probably some kind of NN</li>
+</ul>
 
 
 </section>
