@@ -346,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As it stands, each group of 2 x 2 pixels has 4 unique weights associated with it (one for each pixel), which are being summed up into a single value in the hidden layer. But we don’t need the weights to be different for each group, we’re looking for <strong>structure</strong>, we don’t care if my face is in the top left or the bottom right, we’re just looking for a face!</p>
 <p>Let’s summarise the weights into a weight “filter”:</p>
 <p><img src="img/cnn-4.png" class="img-fluid"></p>
-<p><img src="chapter5_cnns-pt1_files/figure-html/56e89767-1-7cedca66-b16e-46de-8c83-15bd211eaa9d.png" class="img-fluid" alt="image.png"> - Let’s see how the filter works - We’ll display some arbitrary values for our pixels - The filter “convolves” over each group of pixels, multiplies corresponding elements and sums them up to give the values in the output nodes:</p>
+<p><img src="chapter5_cnns-pt1_files/figure-html/dc207e43-1-7cedca66-b16e-46de-8c83-15bd211eaa9d.png" class="img-fluid" alt="image.png"> - Let’s see how the filter works - We’ll display some arbitrary values for our pixels - The filter “convolves” over each group of pixels, multiplies corresponding elements and sums them up to give the values in the output nodes:</p>
 <p><img src="img/cnn-5.gif" class="img-fluid"></p>
 <p>As we’ll see, we can add as many of these “filters” as we like to make more complex models that can identify more useful things:</p>
 <p><img src="img/cnn-6.png" class="img-fluid"></p>
