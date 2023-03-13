@@ -5,6 +5,7 @@ project:
     - "touch _docs/.nojekyll"
 
 book:
+  title: "Deep Learning with PyTorch"
   site-url: "https://prncevince.github.io/deep-learning-with-pytorch"
   repo-url: "https://github.com/prncevince/deep-learning-with-pytorch"
   repo-branch: main

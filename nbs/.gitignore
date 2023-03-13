@@ -1,2 +1,4 @@
 nbdev.yml
 sidebar.yml
+data/MNIST/
+data/bitmoji_rgb/all
